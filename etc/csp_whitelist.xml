@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Klarna Bank AB (publ)
+ *
+ * For the full copyright and license information, please view the NOTICE
+ * and LICENSE files that were distributed with this source code.
+ */
+-->
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="klarna_services" type="host">*.klarnaservices.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="klarna_cdn" type="host">*.klarnacdn.net</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="klarna_services" type="host">*.klarnaservices.com</value>
+                <value id="klarna" type="host">*.klarna.com</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="klarna_cdn" type="host">*.klarnacdn.net</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

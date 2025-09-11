@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * This file is part of the Klarna Onsitemessaging module
+  *
+  * (c) Klarna Bank AB (publ)
+  *
+  * For the full copyright and license information, please view the NOTICE
+  * and LICENSE files that were distributed with this source code.
+  */
+-->
+<!--
+ /**
+  * The goal of this suite is to run the tests on multiple markets (DE, US, ...)
+  */
+-->
+<suites xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Suite/etc/suiteSchema.xsd">
+    <suite name="KlarnaOnsiteMessagingSuite">
+        <before>
+            <actionGroup ref="AdminLoginActionGroup" stepKey="loginAsAdmin"/>
+            <actionGroup ref="KlarnaConfigureForMarketActionGroup" stepKey="configureForMarket">
+                <argument name="country" value="DE"/>
+                <argument name="currency" value="EUR"/>
+                <argument name="vat" value="1"/>
+                <argument name="price_display" value="1"/>
+                <argument name="tax_price_display" value="2"/>
+                <argument name="region" value="82"/>
+            </actionGroup>
+
+            <magentoCLI command="config:set klarna/osm/enabled 1" stepKey="EnableOsm"/>
+            <magentoCLI command="config:set klarna/api/region eu" stepKey="region"/>
+            <magentoCLI command="config:set klarna/api_eu/api_mode 1" stepKey="mode"/>
+            <magentoCLI command="config:set klarna/api_eu/client_identifier_playground {{_CREDS.klarna/eu_api_client_id}}" stepKey="dataId"/>
+            <magentoCLI command="cache:clean" stepKey="cacheClean"/>
+            <actionGroup ref="AdminLogoutActionGroup" stepKey="signOutFromAdmin"/>
+        </before>
+        <after>
+        </after>
+        <include>
+            <group name="Klarna_Onsitemessaging"/>
+        </include>
+    </suite>
+</suites>

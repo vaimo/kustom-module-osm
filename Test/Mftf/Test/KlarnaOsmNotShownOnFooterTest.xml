@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * This file is part of the Klarna Onsitemessaging module
+  *
+  * (c) Klarna Bank AB (publ)
+  *
+  * For the full copyright and license information, please view the NOTICE
+  * and LICENSE files that were distributed with this source code.
+  */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="KlarnaOsmNotShownOnFooterTest">
+        <annotations>
+            <features value="Klarna Onsitemessaging"/>
+            <stories value="Verify Klarna Onsitemessaging does not appear on footer"/>
+            <title value="Verify Klarna Onsitemessaging does not appear on footer"/>
+            <description value="Verify Klarna Onsitemessaging does not appear on footer"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="OSM_FOOTER_NOT_SHOWN"/>
+            <group value="Klarna_Onsitemessaging"/>
+        </annotations>
+
+        <amOnPage url="/" stepKey="navigateToStorefront"/>
+        <executeJS function="return jQuery('.page-footer #klarna-osm-placement-product').outerHTML" stepKey="osmFooter" />
+
+        <assertEmpty stepKey="assert">
+            <actualResult type="string">$osmFooter</actualResult>
+        </assertEmpty>
+    </test>
+</tests>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Klarna Bank AB (publ)
+ *
+ * For the full copyright and license information, please view the NOTICE
+ * and LICENSE files that were distributed with this source code.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="footer">
+            <block class="Klarna\Onsitemessaging\Block\Footer"
+                   name="klarna.osm.footer"
+                   as="klarna_osm_footer"
+                   template="Klarna_Onsitemessaging::html/placement/footer.phtml"
+                   after="-"
+            />
+        </referenceContainer>
+    </body>
+</page>

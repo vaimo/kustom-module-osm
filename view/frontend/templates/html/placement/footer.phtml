@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © Klarna Bank AB (publ)
+ *
+ * For the full copyright and license information, please view the NOTICE
+ * and LICENSE files that were distributed with this source code.
+ */
+
+/** @var Klarna\Onsitemessaging\Block\Footer $block */
+/** @var Magento\Framework\Escaper $escaper */
+
+if ($block->showInFooter()):
+    ?>
+    <div id="klarna-osm-placement-footer" style="max-width: 44%"></div>
+
+<script async>
+    window.addEventListener('klarna-sdk-ready', function (event) {
+        const PluginKlarnaWebSdk = event.detail.sdk;
+
+        PluginKlarnaWebSdk.Messaging.placement({
+            key: "footer-promotion-auto-size",
+            locale: "<?= $escaper->escapeHtml($block->getLocale()) ?>"
+        }).mount('#klarna-osm-placement-footer');
+    });
+</script>
+
+<?php endif ?>

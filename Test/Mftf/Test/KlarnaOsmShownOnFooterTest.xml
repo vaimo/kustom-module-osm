@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * This file is part of the Klarna Onsitemessaging module
+  *
+  * (c) Klarna Bank AB (publ)
+  *
+  * For the full copyright and license information, please view the NOTICE
+  * and LICENSE files that were distributed with this source code.
+  */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="KlarnaOsmShownOnFooterTest">
+        <annotations>
+            <features value="Klarna Onsitemessaging"/>
+            <stories value="Verify Klarna Onsitemessaging appears on footer"/>
+            <title value="Verify Klarna Onsitemessaging appears on footer"/>
+            <description value="Verify Klarna Onsitemessaging appears on footer"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="OSM_FOOTER_SHOWN"/>
+            <group value="Klarna_Onsitemessaging"/>
+        </annotations>
+        <before>
+            <magentoCLI command="config:set klarna/osm/position footer" stepKey="footerEnabled"/>
+            <magentoCLI command="cache:clean" stepKey="cacheCleanBefore"/>
+        </before>
+        <after>
+            <magentoCLI command="config:set klarna/osm/position NULL" stepKey="footerDisabled"/>
+            <magentoCLI command="cache:clean" stepKey="cacheCleanAfter"/>
+        </after>
+
+        <amOnPage url="/" stepKey="navigateToStorefront"/>
+        <executeJS function="return jQuery('.page-footer #klarna-osm-placement-product')[0].shadowRoot.getElementById('klarna-placement-footer-promotion-auto-size').outerHTML" stepKey="osmFooter" />
+
+        <assertNotEmpty stepKey="assert">
+            <actualResult type="string">$osmFooter</actualResult>
+        </assertNotEmpty>
+    </test>
+</tests>

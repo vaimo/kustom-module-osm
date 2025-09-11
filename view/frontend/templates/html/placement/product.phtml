@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Klarna Bank AB (publ)
+ *
+ * For the full copyright and license information, please view the NOTICE
+ * and LICENSE files that were distributed with this source code.
+ */
+
+/** @var Klarna\Onsitemessaging\Block\Product $block */
+/** @var Magento\Framework\Escaper $escaper */
+
+if ($block->showOnProduct()):
+    ?>
+    <div id="klarna-osm-placement-product"></div>
+
+<script async>
+    window.addEventListener('klarna-sdk-ready', function (event) {
+        const PluginKlarnaWebSdk = event.detail.sdk;
+
+        PluginKlarnaWebSdk.Messaging.placement({
+            key: "<?= $escaper->escapeHtml($block->getKey()) ?>",
+            locale: "<?= $escaper->escapeHtml($block->getLocale()) ?>",
+
+            <?php if ($block->getTheme()): ?>
+            theme: "<?= $escaper->escapeHtml($block->getTheme()) ?>",
+            <?php endif ?>
+
+            <?php if ($block->getPurchaseAmount()): ?>
+            purchaseAmount: "<?= $escaper->escapeHtml($block->getPurchaseAmount()) ?>"
+            <?php endif ?>
+        }).mount('#klarna-osm-placement-product');
+    });
+</script>
+
+<?php endif ?>

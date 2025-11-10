@@ -6,7 +6,7 @@
     "version": "4.0.17",
     "require": {
         "vaimo/kustom-module-admin-settings": "^1",
-        "vaimo/kustom-module-base": "11.0.12",
+        "vaimo/kustom-module-base": "11.0.*",
         "magento/framework": "^103",
         "magento/module-catalog": "^103.0|^104.0",
         "magento/module-checkout": "^100.1",
